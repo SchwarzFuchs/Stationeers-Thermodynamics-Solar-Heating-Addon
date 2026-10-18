@@ -1,0 +1,11 @@
+{
+  "_name": "ThermodynamicsSolarHeatingAddon",
+  "_author": "SchwarzFuchs",
+  "_description": "Sun-facing panels heat the room air they border: per-wall physics with material conductivity and occlusion-aware sunlight. Companion addon for Structure Thermodynamics — use together for a realistic heat balance, or standalone.",
+  "_version": "1.0",
+  "_unityVersion": "2021.2.13f1",
+  "_platforms": 1,
+  "_content": 4,
+  "_contentTypes": 2,
+  "_isEnabled": true
+}

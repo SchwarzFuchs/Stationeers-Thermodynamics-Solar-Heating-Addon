@@ -1,0 +1,6 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <!-- Set this to your Stationeers game install directory -->
+    <StationeersDirectory>I:\Stationeers.Build.24703804\Stationeers\</StationeersDirectory>
+  </PropertyGroup>
+</Project>

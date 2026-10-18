@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>Thermodynamics Solar Heating Addon</Name>
+  <Author>SchwarzFuchs</Author>
+  <Version>1.0</Version>
+  <!-- Steam description using steam styling tags -->
+  <Description>
+    [h1]Thermodynamics Solar Heating Addon[/h1]
+    [b]Requires:[/b] BepInEx + StationeersLaunchPad.
+
+    [b]Companion mod:[/b] Designed as an addon for "Structure Thermodynamics".
+    That mod models heat loss through your walls; this one adds solar heating of the room
+    air. Use them together for a realistic thermal balance — a room settles at an
+    equilibrium temperature where solar gain is offset by the heat lost through the
+    structure. This mod also works standalone (solar gain only, no heat loss).
+
+    [b]What it does:[/b]
+    Sun-facing structural panels heat the air of the room they border, computed per wall panel.
+
+    [b]Sunlight / occlusion:[/b]
+    A panel only heats when the sun actually reaches it (occlusion-aware ray to the sun).
+    A transparent panel (frame/glass) is tested from its own cell, so lateral overhangs and
+    roof "umbrellas" correctly shade it. A solid, light-blocking wall is tested from the cell
+    outside it, so the wall itself does not block its own light.
+
+    [b]Config (LaunchPad in-game settings menu, adjustable at runtime, no restart):[/b]
+    General/solarHeatingMultiplier (default 0.25) — global scale on the heating energy; 1 = realistic level
+    General/glassTransmissionMultiplier (default 0.25) — scale on the glass transmissive term; 1 = realistic level
+    Performance/threadedInterpolation (default off) — heavy compute every 10 ticks on a
+        background thread + interpolation; lowers main-thread load
+    Debug/debugLog (default off) — verbose per-tick [TSHA] diagnostics in the BepInEx log
+    Debug/debugLogInChat (default off) — mirror [TSHA] diagnostics into the in-game console
+    Debug/debugLogInterval (default 10) — debug-line cadence in ticks (1 = every tick)
+    Debug/performanceTrace (default off) — per-stage pipeline timing in the BepInEx log
+    (file: BepInEx/config/ThermodynamicsSolarHeatingAddon.cfg)
+
+    [b]Diagnostics (BepInEx LogOutput.log, source TSHA):[/b]
+    tick#N: irr=..W/m2 heated=.. J | notInSun noRoom OK vacuum
+    ATMO: total=.. local=.. withRoom=.. roomMap=..
+    INNER: (x,y,z) inner=.. -&gt; factor=..
+    INSUL: (x,y,z) fwd=.. (press Home in game for a one-shot dump)
+  </Description>
+  <!-- In-game description using TMP tags -->
+  <InGameDescription>
+    <![CDATA[<size="30"><color=#ffa500> Thermodynamics Solar Heating Addon </color></size>
+Sun-facing structural panels heat the air of the room they border, computed per wall.
+
+Sunlight: a panel only heats when the sun reaches it (occlusion-aware). Transparent panels are tested from their own cell; solid walls from the outer cell.
+
+Companion addon for "Structure Thermodynamics" — together they give a realistic heat balance (solar gain offset by wall heat loss). Also works standalone (solar gain only).
+
+Requires BepInEx + StationeersLaunchPad.]]>
+  </InGameDescription>
+  <ChangeLog>
+    [h3]Version 1.0:[/h3]
+    [list]
+    [*]Initial public release: per-wall solar heating of room air
+    [*]Occlusion-aware sunlight test (transparent vs light-blocking panels)
+    [*]BepInEx config multipliers (defaults 0.25) + [TSHA] diagnostics
+    [*]Optional threaded compute + interpolation (Performance/threadedInterpolation)
+    [*]Settings exposed in the StationeersLaunchPad in-game menu (adjustable at runtime)
+    [/list]
+  </ChangeLog>
+  <Dependencies />
+  <LoadBefore />
+  <LoadAfter />
+  <Tags>
+    <Tag>Thermodynamics</Tag>
+    <Tag>Solar</Tag>
+    <Tag>Insulation</Tag>
+    <Tag>StationeersMods</Tag>
+  </Tags>
+</ModMetadata>

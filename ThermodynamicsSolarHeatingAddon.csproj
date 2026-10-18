@@ -1,0 +1,108 @@
+<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <TargetFramework>net48</TargetFramework>
+        <OutputPath>bin\Debug</OutputPath>
+        <ModName>ThermodynamicsSolarHeatingAddon</ModName>
+        <UserDir>$(HOMEDRIVE)$(HOMEPATH)</UserDir>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <Prefer32Bit>false</Prefer32Bit>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <Prefer32Bit>false</Prefer32Bit>
+    </PropertyGroup>
+    <Import Project="$(SolutionDir)ThermodynamicsSolarHeatingAddon.VS.props" />
+    <ItemGroup>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(StationeersDirectory)\rocketstation_Data\Managed\Assembly-CSharp.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Assembly-CSharp-firstpass">
+            <HintPath>$(StationeersDirectory)\rocketstation_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="BepInEx">
+          <HintPath>$(StationeersDirectory)\BepInEx\core\BepInEx.dll</HintPath>
+        </Reference>
+        <Reference Include="BepInEx.Harmony">
+          <HintPath>$(StationeersDirectory)\BepInEx\core\BepInEx.Harmony.dll</HintPath>
+        </Reference>
+        <Reference Include="LaunchPadBooster">
+          <HintPath>libs\LaunchPadBooster.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="StationeersLaunchPad">
+          <HintPath>libs\StationeersLaunchPad.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="StationeersMods.Interface">
+          <HintPath>libs\StationeersMods.Interface.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="StationeersMods.Shared">
+          <HintPath>libs\StationeersMods.Shared.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="UniTask">
+          <HintPath>$(StationeersDirectory)\rocketstation_Data\Managed\UniTask.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.TextMeshPro">
+          <HintPath>$(StationeersDirectory)\rocketstation_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine">
+            <HintPath>$(StationeersDirectory)\rocketstation_Data\Managed\UnityEngine.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(StationeersDirectory)\rocketstation_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.PhysicsModule">
+            <HintPath>$(StationeersDirectory)\rocketstation_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.InputLegacyModule">
+            <HintPath>$(StationeersDirectory)\rocketstation_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="0Harmony">
+            <HintPath>$(StationeersDirectory)\BepInEx\core\0Harmony.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+          <HintPath>$(StationeersDirectory)\rocketstation_Data\Managed\UnityEngine.UI.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <ItemGroup>
+        <_CopyItemsGameData Include="$(ProjectDir)\GameData\**\*.*" />
+        <_CopyItemsAbout Include="$(ProjectDir)\About\**\*.*" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="DeadlySurvival.dll" />
+      <None Remove="OrbitTimescalePersistence.dll" />
+    </ItemGroup>
+    <Target Name="AfterBuild">
+        <RemoveDir Directories="$(UserDir)\Documents\My Games\Stationeers\mods\$(ModName)" />
+        <Copy SourceFiles="$(ProjectDir)\$(ModName).info" DestinationFolder="$(UserDir)\Documents\My Games\Stationeers\mods\$(ModName)" ContinueOnError="false" />
+        <Copy SourceFiles="$(ProjectDir)\bin\Debug\$(ModName).dll" DestinationFolder="$(UserDir)\Documents\My Games\Stationeers\mods\$(ModName)" ContinueOnError="true" />
+        <Copy SourceFiles="@(_CopyItemsGameData)" DestinationFolder="$(UserDir)\Documents\My Games\Stationeers\mods\$(ModName)\GameData\%(RecursiveDir)" ContinueOnError="true" />
+        <Copy SourceFiles="@(_CopyItemsAbout)" DestinationFolder="$(UserDir)\Documents\My Games\Stationeers\mods\$(ModName)\About\%(RecursiveDir)" ContinueOnError="true" />
+        <Copy SourceFiles="$(ProjectDir)\bin\Debug\$(ModName).pdb" DestinationFolder="$(UserDir)\Documents\My Games\Stationeers\mods\$(ModName)" ContinueOnError="true" Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
+    </Target>
+</Project>
