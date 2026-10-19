@@ -149,12 +149,21 @@ namespace ThermodynamicsSolarHeatingAddon.scripts
         }
 
         /// <summary>
-        /// Get material properties: (transmissivity R, conductivity C, absorptivity A)
-        /// </summary>
-        public static (float R, float C, float A) GetProps(Material m)
-        {
-            return materialProps.TryGetValue(m, out var p) ? p : (0f, 1f, 0f);
-        }
+                        /// Get material properties: (transmissivity R, conductivity C, absorptivity A)
+                        /// </summary>
+                        public static (float R, float C, float A) GetProps(Material m)
+                        {
+                            var (R, C, A) = materialProps.TryGetValue(m, out var v) ? v : (0f, 1f, 0f);
+                            if (m == Material.Glass)
+                            {
+                                // Apply glass transmissivity multiplier from config (default 1.0 = vanilla R=0.85)
+                                float glassMult = ConfigManager.Entry_GlassTransmissionMultiplier != null 
+                                    ? ConfigManager.Entry_GlassTransmissionMultiplier.Value 
+                                    : 1.0f;
+                                R = 0.85f * glassMult;
+                            }
+                            return (R, C, A);
+                        }
 
         /// <summary>
         /// Compute solar heating factor for a single layer.

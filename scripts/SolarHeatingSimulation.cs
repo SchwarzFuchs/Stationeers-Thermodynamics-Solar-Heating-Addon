@@ -62,10 +62,9 @@ namespace ThermodynamicsSolarHeatingAddon.scripts
         private Dictionary<Structure, LayerStack> _layerStackCache;
         private Dictionary<Grid3, bool> _sunlightCache;
         private Vector3 _sunDirNormalized;
-        private float _irr;
-        private float _solarMult;
-        private float _glassMult;
-        private bool _logNow;
+                private float _irr;
+                private float _solarMult;
+                private bool _logNow;
         private int _heated, _notInSun, _noRoom, _ok, _vacuum;
         private double _totalEnergy;
 
@@ -195,10 +194,9 @@ namespace ThermodynamicsSolarHeatingAddon.scripts
             _sunlightCache = new Dictionary<Grid3, bool>();
 
             // Read config once per tick
-            _irr = OrbitalSimulation.SolarIrradiance;
-            _solarMult = ConfigManager.Entry_SolarHeatingMultiplier.Value;
-            _glassMult = ConfigManager.Entry_GlassTransmissionMultiplier.Value;
-            _logNow = LogCadenceDue();
+                        _irr = OrbitalSimulation.SolarIrradiance;
+                        _solarMult = ConfigManager.Entry_SolarHeatingMultiplier.Value;
+                        _logNow = LogCadenceDue();
 
             // Precompute sun direction once
             _sunDirNormalized = OrbitalSimulation.WorldSunVector;

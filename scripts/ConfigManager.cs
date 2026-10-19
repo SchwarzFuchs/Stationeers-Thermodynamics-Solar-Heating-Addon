@@ -17,31 +17,31 @@ namespace ThermodynamicsSolarHeatingAddon.scripts
         public static readonly ManualLogSource Log = Logger.CreateLogSource("TSHA");
 
         // Live config entries. Bound in Bind(Config); always read .Value at the use site
-        // so changes made from the in-game menu apply immediately (no restart).
-        public static ConfigEntry<float> Entry_SolarHeatingMultiplier;
-        public static ConfigEntry<float> Entry_GlassTransmissionMultiplier;
-        public static ConfigEntry<bool> Entry_DebugLogInChat;
-        public static ConfigEntry<bool> Entry_DebugLog;
-        public static ConfigEntry<float> Entry_DebugLogInterval;   // debug cadence in ticks (1 = every tick)
-        public static ConfigEntry<bool> Entry_ThreadedInterpolation;  // NEW: async compute every 10 ticks + interpolate
-        public static ConfigEntry<bool> Entry_PerfTrace;              // per-stage pipeline timing in the BepInEx log
+                // so changes made from the in-game menu apply immediately (no restart).
+                public static ConfigEntry<float> Entry_SolarHeatingMultiplier;
+                public static ConfigEntry<float> Entry_GlassTransmissionMultiplier;
+                public static ConfigEntry<bool> Entry_DebugLogInChat;
+                public static ConfigEntry<bool> Entry_DebugLog;
+                public static ConfigEntry<float> Entry_DebugLogInterval;   // debug cadence in ticks (1 = every tick)
+                public static ConfigEntry<bool> Entry_ThreadedInterpolation;  // NEW: async compute every 10 ticks + interpolate
+                public static ConfigEntry<bool> Entry_PerfTrace;              // per-stage pipeline timing in the BepInEx log
 
         public static void Bind(ConfigFile config)
         {
             Entry_SolarHeatingMultiplier = config.Bind(
-                "General", "solarHeatingMultiplier", 0.25f,
-                "Overall multiplier for solar heating of room air. "
-                + "1 = realistic (pure physics) level; 0.25 = quarter strength (default). "
-                + "0 disables it; >1 heats faster.");
+                                        "General", "solarHeatingMultiplier", 0.25f,
+                                        "Overall multiplier for solar heating of room air. "
+                                        + "1 = realistic (pure physics) level; 0.25 = quarter strength (default). "
+                                        + "0 disables it; >1 heats faster.");
 
-            Entry_GlassTransmissionMultiplier = config.Bind(
-                "General", "glassTransmissionMultiplier", 0.25f,
-                "Greenhouse multiplier for glass transparency. "
-                + "1 = realistic (pure physics) level (glass materialFactor = 0.10 + 0.85*1 = 0.95); "
-                + "0.25 = quarter strength (default). "
-                + "Smaller = less heat through glass; larger = more.");
+                        Entry_GlassTransmissionMultiplier = config.Bind(
+                            "General", "glassTransmissionMultiplier", 1.0f,
+                            "Multiplier for glass transmissivity (R). "
+                            + "1 = vanilla glass R=0.85 (realistic); "
+                            + "0.5 = half transmissivity; 2 = double. "
+                            + "Affects greenhouse effect: higher = more solar energy passes through glass.");
 
-            Entry_DebugLogInChat = config.Bind(
+                        Entry_DebugLogInChat = config.Bind(
                 "Debug", "debugLogInChat", false,
                 "Echo the per-tick solar summary into the in-game console (F3). "
                 + "Full detail goes to the BepInEx log when Debug/debugLog is enabled.");

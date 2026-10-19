@@ -24,9 +24,9 @@
     outside it, so the wall itself does not block its own light.
 
     [b]Config (LaunchPad in-game settings menu, adjustable at runtime, no restart):[/b]
-    General/solarHeatingMultiplier (default 0.25) — global scale on the heating energy; 1 = realistic level
-    General/glassTransmissionMultiplier (default 0.25) — scale on the glass transmissive term; 1 = realistic level
-    Performance/threadedInterpolation (default off) — heavy compute every 10 ticks on a
+            General/solarHeatingMultiplier (default 0.25) — global scale on the heating energy; 1 = realistic level
+            General/glassTransmissionMultiplier (default 1.0) — scale on glass transmissivity (R); 1 = vanilla glass
+            Performance/threadedInterpolation (default off) — heavy compute every 10 ticks on a
         background thread + interpolation; lowers main-thread load
     Debug/debugLog (default off) — verbose per-tick [TSHA] diagnostics in the BepInEx log
     Debug/debugLogInChat (default off) — mirror [TSHA] diagnostics into the in-game console
