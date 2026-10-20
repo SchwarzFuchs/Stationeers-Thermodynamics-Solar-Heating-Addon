@@ -17,14 +17,12 @@ In vanilla Stationeers a sealed room neither gains nor loses heat to the sun or 
 - Heating is computed **per wall panel**: `E = irradiance × FaceArea × buildState × factor × solarHeatingMultiplier × cosAngle`.
 - A panel only heats when the sun actually reaches it (**occlusion-aware ray** to the sun).
 
-## Companion mod
+This addon is designed to work alongside **Structure Thermodynamics** mod:
 
-This addon is designed to work alongside **Structure Thermodynamics**:
-
-| Mod | Contribution | Sign |
-|---|---|---|
-| Structure Thermodynamics | Heat **loss** through walls (conduction / convection / radiation) | − |
-| **This addon** | Solar **heating** of the room air | + |
+| Mod | Contribution |
+|---|---|
+| Structure Thermodynamics | Heat **loss** through walls (conduction / convection / radiation) |
+| **This addon** | Solar **heating** of the room air |
 
 Used together they form a realistic thermal balance — a room settles at an equilibrium temperature where solar gain is offset by the heat lost through the structure. This addon **also works standalone** (solar gain only, no heat loss).
 
