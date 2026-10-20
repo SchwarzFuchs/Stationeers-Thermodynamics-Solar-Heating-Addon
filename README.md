@@ -41,14 +41,14 @@ Transmissivity **R** / conductivity **C** / absorptivity **A**:
 | Default | 0 | 1.0 | 0.30 | fallback (same as Iron) |
 
 Example of how much heat (joules) added per tick to cell with 1.0 multiplier with 1250 w/m^2 sun flow at 0 degrees angle.
-| | Inner layer |  | | | |
+| | | Inner layer  | Inner layer | Inner layer | Inner layer |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Outer layer** | **Material** | **Iron** | **Steel** | **Glass** | **Insulation** |
-| | **Iron** | 1250 | 1000 | 187.5 | 62.5 |
-| | **Steel** | 600 | 500 | 93.75 | 31.25 |
-| | **Glass** | 1350 | 585 | 3738.75 | 127.0833 |
-| | **Insulation** | 125 | 125 | 125 | 104.1667 |
-| | **Empty** | 1500 | 600 | 4325 | 125 |
+| | **Material** | **Iron** | **Steel** | **Glass** | **Insulation** |
+| **Outer layer** | **Iron** | 1250 | 1000 | 187.5 | 62.5 |
+| **Outer layer** | **Steel** | 600 | 500 | 93.75 | 31.25 |
+| **Outer layer** | **Glass** | 1350 | 585 | 3738.75 | 127.0833 |
+| **Outer layer** | **Insulation** | 125 | 125 | 125 | 104.1667 |
+| **Outer layer** | **Empty** | 1500 | 600 | 4325 | 125 |
 
 ## Configuration
 
